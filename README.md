@@ -1,3 +1,17 @@
+## ⚠️ Notice
+
+This version of `ox_inventory` has been modified to improve compatibility with the latest version of `qb-core`. It is based on a prior QB-compatible fork originally maintained by [@JericoFX](https://github.com/JericoFX), and includes additional updates and enhancements.
+
+Please be aware that the original inventory system is the property of the Overextended team and remains under its original license. All changes in this version aim to retain core functionality while adapting it for modern `qb-core` environments.
+
+**Note:** The Overextended/Cox team does **not** support `qb-core`.  
+Please do **not** contact them regarding this modified version.  
+
+This fork exists to offer a more community-driven alternative.  
+It was created in response to the original team/Cox's top-down, centralized approach — which we do not support or believe in.
+
+
+
 # ox_inventory
 
 A complete inventory system for FiveM, implementing items, weapons, shops, and more without any strict framework dependency.
@@ -13,7 +27,7 @@ https://coxdocs.dev/ox_inventory
 
 ## 💾 Download
 
-https://github.com/communityox/ox_inventory/releases/latest/download/ox_inventory.zip
+https://github.com/The-Order-Of-The-Sacred-Framework/ox_inventory/releases/latest/download/ox_inventory.zip
 
 ## Supported frameworks
 
@@ -21,6 +35,7 @@ We do not guarantee compatibility or support for third-party resources.
 
 - [ox_core](https://github.com/communityox/ox_core)
 - [esx](https://github.com/esx-framework/esx_core)
+- [qb-core](https://github.com/qbcore-framework/qb-core)
 - [qbox](https://github.com/Qbox-project/qbx_core)
 - [nd_core](https://github.com/ND-Framework/ND_Core)
 
