@@ -8,7 +8,7 @@ Please be aware that the original inventory system is the property of the Overex
 Please do **not** contact them regarding this modified version.  
 
 This fork exists to offer a more community-driven alternative.  
-It was created in response to the original team/Cox's top-down, centralized approach — which we do not support or believe in.
+It was created in response to some other creators top-down, centralized approach — which we do not support or believe in.
 
 
 
