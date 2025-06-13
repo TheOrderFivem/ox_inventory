@@ -84,6 +84,28 @@ const SlotTooltip: React.ForwardRefRenderFunction<
                   {Locale.ui_tint}: {item.metadata.weapontint}
                 </p>
               )}
+              {item.metadata?.rarity && (
+                <p>
+                  Rarity: <span style={{ 
+                    color: 
+                      item.metadata.rarity === 'common' ? '#ffffff' :
+                      item.metadata.rarity === 'uncommon' ? '#1eff00' :
+                      item.metadata.rarity === 'rare' ? '#0070dd' :
+                      item.metadata.rarity === 'epic' ? '#a335ee' :
+                      item.metadata.rarity === 'legendary' ? '#ff8000' :
+                      item.metadata.rarity === 'artifact' ? '#e6cc80' :
+                      item.metadata.rarity === 'red' ? '#ff0000' :
+                      item.metadata.rarity === 'pink' ? '#ff69b4' :
+                      item.metadata.rarity === 'gold' ? '#ffd700' :
+                      item.metadata.rarity === 'rainbow' ? '#ffffff' :
+                      '#ffffff',
+                    fontWeight: 'bold',
+                    textTransform: 'capitalize'
+                  }}>
+                    {item.metadata.rarity}
+                  </span>
+                </p>
+              )}
               {additionalMetadata.map((data: { metadata: string; value: string }, index: number) => (
                 <Fragment key={`metadata-${index}`}>
                   {item.metadata && item.metadata[data.metadata] && (

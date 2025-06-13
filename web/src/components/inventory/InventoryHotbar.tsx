@@ -11,6 +11,19 @@ import SlideUp from '../utils/transitions/SlideUp';
 const InventoryHotbar: React.FC = () => {
   const [hotbarVisible, setHotbarVisible] = useState(false);
   const items = useAppSelector(selectLeftInventory).items.slice(0, 5);
+  // Helper function to get rarity class
+  const getRarityClass = (item: any) => {
+    if (!isSlotWithItem(item) || !item.metadata?.rarity) return '';
+    
+    const rarity = String(item.metadata.rarity).toLowerCase();
+    const validRarities = ['common', 'uncommon', 'rare', 'epic', 'legendary', 'artifact', 'red', 'pink', 'gold', 'rainbow'];
+    
+    if (validRarities.includes(rarity)) {
+      return `rarity-${rarity}`;
+    }
+    
+    return '';
+  };
 
   //stupid fix for timeout
   const [handle, setHandle] = useState<NodeJS.Timeout>();
@@ -27,14 +40,16 @@ const InventoryHotbar: React.FC = () => {
   return (
     <SlideUp in={hotbarVisible}>
       <div className="hotbar-container">
-        {items.map((item) => (
-          <div
-            className="hotbar-item-slot"
-            style={{
-              backgroundImage: `url(${item?.name ? getItemUrl(item as SlotWithItem) : 'none'}`,
-            }}
-            key={`hotbar-${item.slot}`}
-          >
+        {items.map((item) => {
+          const rarityClass = getRarityClass(item);
+          return (
+            <div
+              className={`hotbar-item-slot${rarityClass ? ` ${rarityClass}` : ''}`}
+              style={{
+                backgroundImage: `url(${item?.name ? getItemUrl(item as SlotWithItem) : 'none'}`,
+              }}
+              key={`hotbar-${item.slot}`}
+            >
             {isSlotWithItem(item) && (
               <div className="item-slot-wrapper">
                 <div className="hotbar-slot-header-wrapper">
@@ -65,7 +80,7 @@ const InventoryHotbar: React.FC = () => {
               </div>
             )}
           </div>
-        ))}
+        )})}
       </div>
     </SlideUp>
   );
