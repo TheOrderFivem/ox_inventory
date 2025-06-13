@@ -116,15 +116,29 @@ const InventorySlot: React.ForwardRefRenderFunction<HTMLDivElement, SlotProps> =
       onUse(item);
     }
   };
-
   const refs = useMergeRefs([connectRef, ref]);
+  // Helper function to get rarity class
+  const getRarityClass = () => {
+    if (!isSlotWithItem(item) || !item.metadata?.rarity) return '';
+    
+    const rarity = String(item.metadata.rarity).toLowerCase();
+    const validRarities = ['common', 'uncommon', 'rare', 'epic', 'legendary', 'artifact', 'red', 'pink', 'gold', 'rainbow'];
+    
+    if (validRarities.includes(rarity)) {
+      return `rarity-${rarity}`;
+    }
+    
+    return '';
+  };
+
+  const rarityClass = getRarityClass();
 
   return (
     <div
       ref={refs}
       onContextMenu={handleContext}
       onClick={handleClick}
-      className="inventory-slot"
+      className={`inventory-slot${rarityClass ? ` ${rarityClass}` : ''}`}
       style={{
         filter:
           !canPurchaseItem(item, { type: inventoryType, groups: inventoryGroups }) || !canCraftItem(item, inventoryType)

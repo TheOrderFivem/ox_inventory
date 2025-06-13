@@ -7,19 +7,28 @@ Please be aware that the original inventory system is the property of the Overex
 **Note:** The Overextended/Cox team does **not** support `qb-core`.  
 Please do **not** contact them regarding this modified version.  
 
-This fork exists to offer a more community-driven alternative.  
-It was created in response to some other creators top-down, centralized approach — which we do not support or believe in.
+This fork exists to provide a more collaborative, community-driven alternative.  
+We believe in open-source development where the community has a voice in the direction and evolution of the project, fostering innovation through collective contribution.
 
+Diffrences from other forks:
+- Rarity indicators: Visual item classification with colored borders and glow effects based on item rarity (common, uncommon, rare, epic, legendary, artifact, red, pink, gold). This is optional and based on a metadata key of "rarity" with the previously mentioned values
 
+- Added QB-Core compatibility: Full compatibility with modern QB-Core framework has been restored and updated. While the original ox_inventory removed QB-Core support, this fork brings it back with enhanced integration and compatibility for current QB-Core versions, ensuring seamless operation with existing QB-Core servers. This enhancement maintains full compatibility with all other supported frameworks including ESX, ox_core, QBox, and ND_Core - no functionality is lost for existing users of these frameworks.
+
+- Enabled additional extensions by default (jpg, gif, jpeg):  
+The application now supports more image file formats out of the box. In addition to any previously supported formats, users can now upload or process images with the `.jpg`, `.gif`, and `.jpeg` extensions without needing to manually configure these options.
+
+- Enabled additional image hosts to be used (img.bb/discord links):  
+The application now allows images to be loaded from more external sources. Specifically, links from image hosting services such as `img.bb` and Discord's CDN can be used directly. This makes it easier to work with images stored on these platforms, improving flexibility and compatibility for users who share or embed images from various hosts.
 
 # ox_inventory
 
 A complete inventory system for FiveM, implementing items, weapons, shops, and more without any strict framework dependency.
 
-![](https://img.shields.io/github/downloads/communityox/ox_inventory/total?logo=github)
-![](https://img.shields.io/github/downloads/communityox/ox_inventory/latest/total?logo=github)
-![](https://img.shields.io/github/contributors/communityox/ox_inventory?logo=github)
-![](https://img.shields.io/github/v/release/communityox/ox_inventory?logo=github)
+![](https://img.shields.io/github/downloads/The-Order-Of-The-Sacred-Framework/ox_inventory/total?logo=github)
+![](https://img.shields.io/github/downloads/The-Order-Of-The-Sacred-Framework/ox_inventory/latest/total?logo=github)
+![](https://img.shields.io/github/contributors/The-Order-Of-The-Sacred-Framework/ox_inventory?logo=github)
+![](https://img.shields.io/github/v/release/The-Order-Of-The-Sacred-Framework/ox_inventory?logo=github)
 
 ## 📚 Documentation
 
