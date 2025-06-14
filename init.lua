@@ -7,9 +7,9 @@ local function addDeferral(err)
     end)
 end
 
--- Do not modify this file at all. This isn't a "config" file. You want to change
--- resource settings? Use convars like you were told in the documentation.
--- You did read the docs, right? Probably not, if you're here.
+-- Do not modify this file at all. 
+-- This isn't a "config" file.
+-- You want to change resource settings? Use convars (and by that we mean a entirely seperate cfg file included that you execute in the server cfg).
 -- https://coxdocs.dev/ox_inventory#config
 
 shared = {
