@@ -1,25 +1,43 @@
 ## ⚠️ Notice
 
-This version of `ox_inventory` has been modified to improve compatibility with the latest version of `qb-core`. It is based on a prior QB-compatible fork originally maintained by [@JericoFX](https://github.com/JericoFX), and includes additional updates and enhancements.
+This version of `ox_inventory` has been modified to improve compatibility with the latest versions of **qb-core**. It began as a continuation of an older fork by **@JericoFX**, which originally reintroduced QB compatibility but is no longer available. Since then, this fork has evolved into a community-focused version aimed at ensuring broad compatibility while introducing small, non-intrusive quality-of-life enhancements.
 
-Please be aware that the original inventory system is the property of the Overextended team and remains under its original license. All changes in this version aim to retain core functionality while adapting it for modern `qb-core` environments.
+**Important:**
+The original `ox_inventory` is developed and maintained by the **Overextended** team and remains under its original license.
+This modified version is **not officially supported by the Overextended team**.
+Please do **not contact them** for issues related to this fork.
 
-**Note:** The Overextended/Cox team does **not** support `qb-core`.  
-Please do **not** contact them regarding this modified version.  
+---
 
-This fork exists to provide a more collaborative, community-driven alternative.  
-We believe in open-source development where the community has a voice in the direction and evolution of the project, fostering innovation through collective contribution.
+### Purpose
 
-Diffrences from other forks:
-- Rarity indicators: Visual item classification with colored borders and glow effects based on item rarity (common, uncommon, rare, epic, legendary, artifact, red, pink, gold). This is optional and based on a metadata key of "rarity" with the previously mentioned values
+This fork exists to provide a more collaborative and inclusive solution for the FiveM community. We believe in open-source software that evolves with the input of its users, encouraging innovation and adaptation through collective development.
 
-- Added QB-Core compatibility: Full compatibility with modern QB-Core framework has been restored and updated. While the original ox_inventory removed QB-Core support, this fork brings it back with enhanced integration and compatibility for current QB-Core versions, ensuring seamless operation with existing QB-Core servers. This enhancement maintains full compatibility with all other supported frameworks including ESX, ox_core, QBox, and ND_Core - no functionality is lost for existing users of these frameworks.
+---
 
-- Enabled additional extensions by default (jpg, gif, jpeg):  
-The application now supports more image file formats out of the box. In addition to any previously supported formats, users can now upload or process images with the `.jpg`, `.gif`, and `.jpeg` extensions without needing to manually configure these options.
+## Key Differences from Other Forks
 
-- Enabled additional image hosts to be used (img.bb/discord links):  
-The application now allows images to be loaded from more external sources. Specifically, links from image hosting services such as `img.bb` and Discord's CDN can be used directly. This makes it easier to work with images stored on these platforms, improving flexibility and compatibility for users who share or embed images from various hosts.
+### Rarity Indicators (Optional Visual Feature)
+
+* Items can now display colored borders and glow effects based on a `"rarity"` metadata key.
+* Supported values: `common`, `uncommon`, `rare`, `epic`, `legendary`, `artifact`, `red`, `pink`, `gold`.
+
+### Modern QB-Core Compatibility Restored
+
+* Fully re-integrated with the latest versions of **qb-core**.
+* Preserves full support for **ESX**, **ox\_core**, **QBox**, and **ND\_Core** — no features are lost for users of these frameworks.
+* Ensures seamless behavior in modern QB-based server environments.
+
+### Additional Image Extensions Supported
+
+* Out-of-the-box support for `.jpg`, `.jpeg`, and `.gif` image formats.
+* No need for manual configuration to use these file types.
+
+### More Image Hosting Sources Allowed
+
+* Now supports image links from additional domains like **img.bb** and **Discord CDN**.
+* Simplifies the use of externally hosted images for inventory icons or embedded content.
+
 
 # ox_inventory
 
@@ -42,10 +60,10 @@ https://github.com/The-Order-Of-The-Sacred-Framework/ox_inventory/releases/lates
 
 We do not guarantee compatibility or support for third-party resources.
 
-- [ox_core](https://github.com/communityox/ox_core)
-- [esx](https://github.com/esx-framework/esx_core)
 - [qb-core](https://github.com/qbcore-framework/qb-core)
+- [esx](https://github.com/esx-framework/esx_core)
 - [qbox](https://github.com/Qbox-project/qbx_core)
+- [ox_core](https://github.com/communityox/ox_core)
 - [nd_core](https://github.com/ND-Framework/ND_Core)
 
 ## ✨ Features
