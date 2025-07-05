@@ -1,9 +1,9 @@
 ## ⚠️ Notice
 
-This version of `ox_inventory` has been modified to improve compatibility with the latest versions of **qb-core**. It began as a continuation of an older fork by **@JericoFX**, which originally reintroduced QB compatibility but is no longer available. Since then, this fork has evolved into a community-focused version aimed at ensuring broad compatibility while introducing small, non-intrusive quality-of-life enhancements.
+This version of `ox_inventory` has been modified to improve compatibility with the latest versions of **qb-core**. It began as a continuation of an older fork which originally reintroduced QB compatibility but is no longer available. Since then, this fork has evolved into a community-focused version aimed at ensuring broad compatibility while introducing small, non-intrusive quality-of-life enhancements.
 
 **Important:**
-The original `ox_inventory` is developed and maintained by the **Overextended** team and remains under its original license.
+The original `ox_inventory` was developed by the **Overextended** team, but is no longer actively maintained by them and remains under its original license.
 This modified version is **not officially supported by the Overextended team**.
 Please do **not contact them** for issues related to this fork.
 
@@ -26,7 +26,6 @@ This fork exists to provide a more collaborative and inclusive solution for the 
 
 * Fully re-integrated with the latest versions of **qb-core**.
 * Preserves full support for **ESX**, **ox\_core**, **QBox**, and **ND\_Core** — no features are lost for users of these frameworks.
-* Ensures seamless behavior in modern QB-based server environments.
 
 ### Additional Image Extensions Supported
 
