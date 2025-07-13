@@ -42,10 +42,10 @@ This fork exists to provide a more collaborative and inclusive solution for the 
 
 A complete inventory system for FiveM, implementing items, weapons, shops, and more without any strict framework dependency.
 
-![](https://img.shields.io/github/downloads/The-Order-Of-The-Sacred-Framework/ox_inventory/total?logo=github)
-![](https://img.shields.io/github/downloads/The-Order-Of-The-Sacred-Framework/ox_inventory/latest/total?logo=github)
-![](https://img.shields.io/github/contributors/The-Order-Of-The-Sacred-Framework/ox_inventory?logo=github)
-![](https://img.shields.io/github/v/release/The-Order-Of-The-Sacred-Framework/ox_inventory?logo=github)
+![](https://img.shields.io/github/downloads/TheOrderFivem/ox_inventory/total?logo=github)
+![](https://img.shields.io/github/downloads/TheOrderFivem/ox_inventory/latest/total?logo=github)
+![](https://img.shields.io/github/contributors/TheOrderFivem/ox_inventory?logo=github)
+![](https://img.shields.io/github/v/release/TheOrderFivem/ox_inventory?logo=github)
 
 ## 📚 Documentation
 
@@ -53,7 +53,7 @@ https://coxdocs.dev/ox_inventory
 
 ## 💾 Download
 
-https://github.com/The-Order-Of-The-Sacred-Framework/ox_inventory/releases/latest/download/ox_inventory.zip
+https://github.com/TheOrderFivem/ox_inventory/releases/latest/download/ox_inventory.zip
 
 ## Supported frameworks
 
