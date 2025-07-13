@@ -6,7 +6,7 @@ require 'modules.shops.server'
 require 'modules.pefcl.server'
 
 if GetConvar('inventory:versioncheck', 'true') == 'true' then
-	lib.versionCheck('The-Order-Of-The-Sacred-Framework/ox_inventory')
+	lib.versionCheck('TheOrderFivem/ox_inventory')
 end
 
 local TriggerEventHooks = require 'modules.hooks.server'
