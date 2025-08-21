@@ -290,6 +290,10 @@ function Items.Metadata(inv, item, metadata, count)
 		if item.hash == `WEAPON_PETROLCAN` or item.hash == `WEAPON_HAZARDCAN` or item.hash == `WEAPON_FERTILIZERCAN` or item.hash == `WEAPON_FIREEXTINGUISHER` then
 			metadata.ammo = metadata.durability
 		end
+
+        if item.rarity then
+			metadata.rarity = item.rarity
+		end
 	else
 		local container = Items.containers[item.name]
 
@@ -314,6 +318,10 @@ function Items.Metadata(inv, item, metadata, count)
 
 		if not metadata.durability then
 			metadata = setItemDurability(ItemList[item.name], metadata)
+		end
+
+        if item.rarity then
+			metadata.rarity = item.rarity
 		end
 	end
 
