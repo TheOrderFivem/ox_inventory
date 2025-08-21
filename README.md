@@ -22,6 +22,25 @@ This fork exists to provide a more collaborative and inclusive solution for the 
 * Items can now display colored borders and glow effects based on a `"rarity"` metadata key.
 * Supported values: `common`, `uncommon`, `rare`, `epic`, `legendary`, `artifact`, `red`, `pink`, `gold`.
 
+### Default Rarity for Items & Weapons
+
+You can now define a default rarity directly in `items.lua` and `weapons.lua`  
+by adding a `rarity` field to the item definition.
+
+**Example:**
+
+```lua
+['garbage'] = {
+    label = 'Garbage',
+    rarity = "common"
+},
+
+['pickaxe'] = {
+    label = 'Iron Sword',
+    rarity = "uncommon"
+},
+```
+
 ### Modern QB-Core Compatibility Restored
 
 * Fully re-integrated with the latest versions of **qb-core**.
