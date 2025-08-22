@@ -36,7 +36,7 @@ by adding a `rarity` field to the item definition.
 },
 
 ['pickaxe'] = {
-    label = 'Pickaxe',
+    label = 'Iron Sword',
     rarity = "uncommon"
 },
 ```
