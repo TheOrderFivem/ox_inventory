@@ -50,8 +50,7 @@ return {
 				end
 			}
 		},
-		consume = 0.3,
-        rarity = 'epic' -- common, uncommon, rare, epic, legendary, artifact, red, pink, gold
+		consume = 0.3
 	},
 
 	['bandage'] = {
