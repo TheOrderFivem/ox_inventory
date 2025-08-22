@@ -5,6 +5,7 @@ return {
 			weight = 3300,
 			durability = 0.03,
 			ammoname = 'ammo-rifle2',
+            --rarity = 'epic' -- common, uncommon, rare, epic, legendary, artifact, red, pink, gold
 		},
 
 		['WEAPON_SNOWLAUNCHER'] = {
