@@ -341,62 +341,52 @@ button:active {
 }
 
 // Rarity border classes
-.inventory-slot.rarity-common,
-.hotbar-item-slot.rarity-common {
+.rarity-common {
   border: 2px solid $rarityCommon;
   box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
 }
 
-.inventory-slot.rarity-uncommon,
-.hotbar-item-slot.rarity-uncommon {
+.rarity-uncommon {
   border: 2px solid $rarityUncommon;
   box-shadow: 0 0 8px rgba(30, 255, 0, 0.3);
 }
 
-.inventory-slot.rarity-rare,
-.hotbar-item-slot.rarity-rare {
+.rarity-rare {
   border: 2px solid $rarityRare;
   box-shadow: 0 0 8px rgba(0, 112, 221, 0.3);
 }
 
-.inventory-slot.rarity-epic,
-.hotbar-item-slot.rarity-epic {
+.rarity-epic {
   border: 2px solid $rarityEpic;
   box-shadow: 0 0 8px rgba(163, 53, 238, 0.3);
 }
 
-.inventory-slot.rarity-legendary,
-.hotbar-item-slot.rarity-legendary {
+.rarity-legendary {
   border: 2px solid $rarityLegendary;
   box-shadow: 0 0 8px rgba(255, 128, 0, 0.3);
 }
 
-.inventory-slot.rarity-artifact,
-.hotbar-item-slot.rarity-artifact {
+.rarity-artifact {
   border: 2px solid $rarityArtifact;
   box-shadow: 0 0 8px rgba(230, 204, 128, 0.3);
 }
 
-.inventory-slot.rarity-red,
-.hotbar-item-slot.rarity-red {
+.rarity-red {
   border: 2px solid $rarityRed;
   box-shadow: 0 0 8px rgba(255, 0, 0, 0.3);
 }
 
-.inventory-slot.rarity-pink,
-.hotbar-item-slot.rarity-pink {
+.rarity-pink {
   border: 2px solid $rarityPink;
   box-shadow: 0 0 8px rgba(255, 105, 180, 0.3);
 }
 
-.inventory-slot.rarity-gold,
-.hotbar-item-slot.rarity-gold {
+.rarity-gold {
   border: 2px solid $rarityGold;
   box-shadow: 0 0 8px rgba(255, 215, 0, 0.3);
 }
 
-.inventory-slot.rarity-rainbow,
-.hotbar-item-slot.rarity-rainbow {
+.rarity-rainbow {
   border: 2px solid transparent;
   background-image: $rarityRainbow, linear-gradient($secondaryColor, $secondaryColor);
   background-origin: border-box;
