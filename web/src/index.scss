@@ -18,6 +18,31 @@ $rarityRed: #ff0000;
 $rarityPink: #ff69b4;
 $rarityGold: #ffd700;
 $rarityRainbow: linear-gradient(45deg, #ff0000, #ff8000, #ffff00, #00ff00, #0080ff, #8000ff);
+$raritySilver: #c0c0c0;
+$rarityBronze: #cd7f32;
+$rarityCopper: #b87333;
+$rarityBlue: #0099ff;
+$rarityGreen: #00ff66;
+$rarityCyan: #00ffff;
+$rarityMagenta: #ff00ff;
+$rarityYellow: #ffff00;
+$rarityOrange: #ff6600;
+$rarityPurple: #9900ff;
+$rarityLime: #99ff00;
+$rarityTeal: #008080;
+$rarityIndigo: #4b0082;
+$rarityViolet: #8a2be2;
+$rarityMaroon: #800000;
+$rarityNavy: #000080;
+$rarityOlive: #808000;
+$rarityAqua: #00ffff;
+$rarityFuchsia: #ff00ff;
+$rarityBlack: #000000;
+$rarityWhite: #ffffff;
+$rarityCrimson: #dc143c;
+$rarityTurquoise: #40e0d0;
+$rarityLavender: #e6e6fa;
+$rarityRose: #ff007f;
 
 $gridCols: 5;
 $gridRows: 5;
@@ -340,58 +365,31 @@ button:active {
   font-family: $mainFont;
 }
 
-// Rarity border classes
-.rarity-common {
-  border: 2px solid $rarityCommon;
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+// Rarity star indicator styles
+.rarity-star-wrapper {
+  position: absolute;
+  bottom: 22px; // Position above the label
+  left: 4px;
+  pointer-events: none;
 }
 
-.rarity-uncommon {
-  border: 2px solid $rarityUncommon;
-  box-shadow: 0 0 8px rgba(30, 255, 0, 0.3);
+.rarity-star {
+  font-size: 12px;
+  filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.8));
 }
 
-.rarity-rare {
-  border: 2px solid $rarityRare;
-  box-shadow: 0 0 8px rgba(0, 112, 221, 0.3);
+.rarity-star-rainbow {
+  animation: rainbow-glow 2s linear infinite;
 }
 
-.rarity-epic {
-  border: 2px solid $rarityEpic;
-  box-shadow: 0 0 8px rgba(163, 53, 238, 0.3);
-}
-
-.rarity-legendary {
-  border: 2px solid $rarityLegendary;
-  box-shadow: 0 0 8px rgba(255, 128, 0, 0.3);
-}
-
-.rarity-artifact {
-  border: 2px solid $rarityArtifact;
-  box-shadow: 0 0 8px rgba(230, 204, 128, 0.3);
-}
-
-.rarity-red {
-  border: 2px solid $rarityRed;
-  box-shadow: 0 0 8px rgba(255, 0, 0, 0.3);
-}
-
-.rarity-pink {
-  border: 2px solid $rarityPink;
-  box-shadow: 0 0 8px rgba(255, 105, 180, 0.3);
-}
-
-.rarity-gold {
-  border: 2px solid $rarityGold;
-  box-shadow: 0 0 8px rgba(255, 215, 0, 0.3);
-}
-
-.rarity-rainbow {
-  border: 2px solid transparent;
-  background-image: $rarityRainbow, linear-gradient($secondaryColor, $secondaryColor);
-  background-origin: border-box;
-  background-clip: content-box, border-box;
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+@keyframes rainbow-glow {
+  0% { color: #ff0000; filter: drop-shadow(0 0 3px #ff0000); }
+  16.66% { color: #ff8000; filter: drop-shadow(0 0 3px #ff8000); }
+  33.33% { color: #ffff00; filter: drop-shadow(0 0 3px #ffff00); }
+  50% { color: #00ff00; filter: drop-shadow(0 0 3px #00ff00); }
+  66.66% { color: #0080ff; filter: drop-shadow(0 0 3px #0080ff); }
+  83.33% { color: #8000ff; filter: drop-shadow(0 0 3px #8000ff); }
+  100% { color: #ff0000; filter: drop-shadow(0 0 3px #ff0000); }
 }
 
 .item-slot-wrapper {
@@ -453,7 +451,7 @@ button:active {
 .tooltip-wrapper {
   pointer-events: none;
   display: flex;
-  background-color: $mainColor;
+  background-color: $mainColor; // Use original main color - should be fully opaque
   width: 200px;
   padding: 8px;
   flex-direction: column;
