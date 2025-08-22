@@ -21,6 +21,52 @@ const SlotTooltip: React.ForwardRefRenderFunction<
   const description = item.metadata?.description || itemData?.description;
   const ammoName = itemData?.ammoName && Items[itemData?.ammoName]?.label;
 
+  // Helper function to get rarity color
+  const getRarityColor = (rarity: string) => {
+    const rarityColors: { [key: string]: string } = {
+      // Original rarities
+      'common': '#ffffff',
+      'uncommon': '#1eff00',
+      'rare': '#0070dd',
+      'epic': '#a335ee',
+      'legendary': '#ff8000',
+      'artifact': '#e6cc80',
+      'red': '#ff0000',
+      'pink': '#ff69b4',
+      'gold': '#ffd700',
+      'rainbow': '#ffffff',
+
+      // Additional color-based rarities
+      'silver': '#c0c0c0',
+      'bronze': '#cd7f32',
+      'copper': '#b87333',
+      'blue': '#0099ff',
+      'green': '#00ff66',
+      'cyan': '#00ffff',
+      'magenta': '#ff00ff',
+      'yellow': '#ffff00',
+      'orange': '#ff6600',
+      'purple': '#9900ff',
+      'lime': '#99ff00',
+      'teal': '#008080',
+      'indigo': '#4b0082',
+      'violet': '#8a2be2',
+      'maroon': '#800000',
+      'navy': '#000080',
+      'olive': '#808000',
+      'aqua': '#00ffff',
+      'fuchsia': '#ff00ff',
+      'black': '#000000',
+      'white': '#ffffff',
+      'crimson': '#dc143c',
+      'turquoise': '#40e0d0',
+      'lavender': '#e6e6fa',
+      'rose': '#ff007f',
+    };
+
+    return rarityColors[rarity.toLowerCase()] || '#ffffff';
+  };
+
   return (
     <>
       {!itemData ? (
@@ -86,19 +132,8 @@ const SlotTooltip: React.ForwardRefRenderFunction<
               )}
               {item.metadata?.rarity && (
                 <p>
-                  Rarity: <span style={{ 
-                    color: 
-                      item.metadata.rarity === 'common' ? '#ffffff' :
-                      item.metadata.rarity === 'uncommon' ? '#1eff00' :
-                      item.metadata.rarity === 'rare' ? '#0070dd' :
-                      item.metadata.rarity === 'epic' ? '#a335ee' :
-                      item.metadata.rarity === 'legendary' ? '#ff8000' :
-                      item.metadata.rarity === 'artifact' ? '#e6cc80' :
-                      item.metadata.rarity === 'red' ? '#ff0000' :
-                      item.metadata.rarity === 'pink' ? '#ff69b4' :
-                      item.metadata.rarity === 'gold' ? '#ffd700' :
-                      item.metadata.rarity === 'rainbow' ? '#ffffff' :
-                      '#ffffff',
+                  Rarity: <span style={{
+                    color: getRarityColor(item.metadata.rarity),
                     fontWeight: 'bold',
                     textTransform: 'capitalize'
                   }}>

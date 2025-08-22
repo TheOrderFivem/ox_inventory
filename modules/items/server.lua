@@ -275,8 +275,19 @@ function Items.Metadata(inv, item, metadata, count)
 
 	---@cast metadata table<string, any>
 
+	-- Apply default rarity from item definition if not already set
+	if item.rarity and not metadata.rarity then
+		metadata.rarity = item.rarity
+	end
+
 	if item.weapon then
 		if type(metadata) ~= 'table' then metadata = {} end
+		
+		-- Apply default rarity from item definition if not already set
+		if item.rarity and not metadata.rarity then
+			metadata.rarity = item.rarity
+		end
+		
 		if not metadata.durability then metadata.durability = 100 end
 		if not metadata.ammo and item.ammoname then metadata.ammo = 0 end
 		if not metadata.components then metadata.components = {} end

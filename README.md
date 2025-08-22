@@ -19,8 +19,35 @@ This fork exists to provide a more collaborative and inclusive solution for the 
 
 ### Rarity Indicators (Optional Visual Feature)
 
-* Items can now display colored borders and glow effects based on a `"rarity"` metadata key.
-* Supported values: `common`, `uncommon`, `rare`, `epic`, `legendary`, `artifact`, `red`, `pink`, `gold`.
+* Items can now display a **FontAwesome star icon** at the bottom left above the label text based on a `"rarity"` metadata key.
+* **Original Rarities**: `common`, `uncommon`, `rare`, `epic`, `legendary`, `artifact`, `red`, `pink`, `gold`, `rainbow`
+* **Additional Color-Based Rarities**: `silver`, `bronze`, `copper`, `blue`, `green`, `cyan`, `magenta`, `yellow`, `orange`, `purple`, `lime`, `teal`, `indigo`, `violet`, `maroon`, `navy`, `olive`, `aqua`, `fuchsia`, `black`, `white`, `crimson`, `turquoise`, `lavender`, `rose`
+* The `rainbow` rarity features a special animated color-cycling effect.
+* **Default Rarity Support**: You can now define `rarity` directly in `data/items.lua` and `data/weapons.lua` for automatic application.
+
+#### Usage Examples:
+```lua
+-- In data/items.lua
+['rare_gem'] = {
+    label = 'Rare Gem',
+    weight = 50,
+    rarity = 'rare',  -- Will automatically show blue star
+}
+
+-- In data/weapons.lua (inside Weapons table)
+['WEAPON_LEGENDARY_PISTOL'] = {
+    label = 'Legendary Pistol',
+    weight = 1200,
+    durability = 0.2,
+    ammoname = 'ammo-9',
+    rarity = 'legendary',  -- Will automatically show orange star
+}
+
+-- Runtime metadata override (still supported)
+exports.ox_inventory:AddItem(playerId, 'item_name', 1, {
+    rarity = 'epic'  -- Overrides default rarity
+})
+```
 
 ### Modern QB-Core Compatibility Restored
 

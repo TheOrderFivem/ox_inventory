@@ -15,6 +15,8 @@ import { ItemsPayload } from '../../reducers/refreshSlots';
 import { closeTooltip, openTooltip } from '../../store/tooltip';
 import { openContextMenu } from '../../store/contextMenu';
 import { useMergeRefs } from '@floating-ui/react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 interface SlotProps {
   inventoryId: Inventory['id'];
@@ -117,28 +119,64 @@ const InventorySlot: React.ForwardRefRenderFunction<HTMLDivElement, SlotProps> =
     }
   };
   const refs = useMergeRefs([connectRef, ref]);
-  // Helper function to get rarity class
-  const getRarityClass = () => {
-    if (!isSlotWithItem(item) || !item.metadata?.rarity) return '';
-    
+
+  // Helper function to get rarity color for star
+  const getRarityColor = () => {
+    if (!isSlotWithItem(item) || !item.metadata?.rarity) return null;
+
     const rarity = String(item.metadata.rarity).toLowerCase();
-    const validRarities = ['common', 'uncommon', 'rare', 'epic', 'legendary', 'artifact', 'red', 'pink', 'gold', 'rainbow'];
-    
-    if (validRarities.includes(rarity)) {
-      return `rarity-${rarity}`;
-    }
-    
-    return '';
+    const rarityColors: { [key: string]: string } = {
+      // Original rarities
+      'common': '#ffffff',
+      'uncommon': '#1eff00',
+      'rare': '#0070dd',
+      'epic': '#a335ee',
+      'legendary': '#ff8000',
+      'artifact': '#e6cc80',
+      'red': '#ff0000',
+      'pink': '#ff69b4',
+      'gold': '#ffd700',
+      'rainbow': '#ffffff', // For rainbow, we'll handle this with CSS animation
+
+      // Additional color-based rarities
+      'silver': '#c0c0c0',
+      'bronze': '#cd7f32',
+      'copper': '#b87333',
+      'blue': '#0099ff',
+      'green': '#00ff66',
+      'cyan': '#00ffff',
+      'magenta': '#ff00ff',
+      'yellow': '#ffff00',
+      'orange': '#ff6600',
+      'purple': '#9900ff',
+      'lime': '#99ff00',
+      'teal': '#008080',
+      'indigo': '#4b0082',
+      'violet': '#8a2be2',
+      'maroon': '#800000',
+      'navy': '#000080',
+      'olive': '#808000',
+      'aqua': '#00ffff',
+      'fuchsia': '#ff00ff',
+      'black': '#000000',
+      'white': '#ffffff',
+      'crimson': '#dc143c',
+      'turquoise': '#40e0d0',
+      'lavender': '#e6e6fa',
+      'rose': '#ff007f',
+    };
+
+    return rarityColors[rarity] || null;
   };
 
-  const rarityClass = getRarityClass();
+  const rarityColor = getRarityColor();
 
   return (
     <div
       ref={refs}
       onContextMenu={handleContext}
       onClick={handleClick}
-      className={`inventory-slot${rarityClass ? ` ${rarityClass}` : ''}`}
+      className="inventory-slot"
       style={{
         filter:
           !canPurchaseItem(item, { type: inventoryType, groups: inventoryGroups }) || !canCraftItem(item, inventoryType)
@@ -223,6 +261,19 @@ const InventorySlot: React.ForwardRefRenderFunction<HTMLDivElement, SlotProps> =
                   </>
                 )}
               </>
+            )}
+            {/* Rarity Star Indicator */}
+            {rarityColor && (
+              <div className="rarity-star-wrapper">
+                <FontAwesomeIcon
+                  icon={faStar}
+                  className={`rarity-star ${item.metadata?.rarity === 'rainbow' ? 'rarity-star-rainbow' : ''}`}
+                  style={{
+                    color: item.metadata?.rarity === 'rainbow' ? undefined : rarityColor,
+                    filter: `drop-shadow(0 0 3px ${rarityColor})`
+                  }}
+                />
+              </div>
             )}
             <div className="inventory-slot-label-box">
               <div className="inventory-slot-label-text">
