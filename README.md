@@ -84,6 +84,9 @@ https://coxdocs.dev/ox_inventory
 
 https://github.com/TheOrderFivem/ox_inventory/releases/latest/download/ox_inventory.zip
 
+## 📺 Install Guide
+https://www.youtube.com/watch?v=g1_ryUZSOGA
+
 ## Supported frameworks
 
 We do not guarantee compatibility or support for third-party resources.
