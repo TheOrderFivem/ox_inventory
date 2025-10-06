@@ -31,16 +31,10 @@ The goal of this fork is to provide a **collaborative, framework-inclusive solut
 ![Rarity System Demo](rarity.gif)
 
 * Items can now display a **star icon** in the bottom-left corner based on a `"rarity"` metadata key.
-* **Color-Based Rarities**: includes `common`, `uncommon`, `rare`, `epic`, `legendary`, `artifact`, plus additional fun colors and special effects such as the animated `rainbow` rarity.
-* **Default Rarity Support**: define rarities directly in `data/items.lua` or `data/weapons.lua` for automatic application.
-* Can also be overridden at runtime when adding items.
-
-![Rarity System Demo](rarity.gif)
-
-* Items can now display a **star icon** at the bottom left above the label text based on a `"rarity"` metadata key.
 * **Color-Based Rarities**: `common`, `uncommon`, `rare`, `epic`, `legendary`, `artifact`, `red`, `pink`, `gold`, `rainbow`, `silver`, `bronze`, `copper`, `blue`, `green`, `cyan`, `magenta`, `yellow`, `orange`, `purple`, `lime`, `teal`, `indigo`, `violet`, `maroon`, `navy`, `olive`, `aqua`, `fuchsia`, `black`, `white`, `crimson`, `turquoise`, `lavender`, `rose`
 * The `rainbow` rarity features a special animated color-cycling effect.
-* **Default Rarity Support**: You can now define `rarity` directly in `data/items.lua` and `data/weapons.lua` for automatic application.
+* **Default Rarity Support**: define rarities directly in `data/items.lua` or `data/weapons.lua` for automatic application.
+* Can also be overridden at runtime when adding items.
 
 #### Usage Examples:
 ```lua
