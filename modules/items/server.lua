@@ -279,6 +279,9 @@ function Items.Metadata(inv, item, metadata, count)
 	if item.rarity and not metadata.rarity then
 		metadata.rarity = item.rarity
 	end
+	if not metadata.durability then 
+		metadata = setItemDurability(item, metadata)
+	end
 
 	if item.weapon then
 		if type(metadata) ~= 'table' then metadata = {} end
