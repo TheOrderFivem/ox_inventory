@@ -475,6 +475,11 @@ end
 -- 	end
 -- end)
 
------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------,
+
+exports('SyncItemsToClients', function(uiItemList)
+    if not uiItemList then return end
+    TriggerClientEvent('ox_inventory:syncItemData', -1, uiItemList)
+end)
 
 return Items

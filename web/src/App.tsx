@@ -104,6 +104,12 @@ const App: React.FC = () => {
     dispatch(setupInventory({ leftInventory }));
   });
 
+  useNuiEvent<typeof Items>('updateItemsLive', (newItems) => {
+    for (const name in newItems) {
+      Items[name] = newItems[name];
+    }
+  });
+
   fetchNui('uiLoaded', {});
 
   useNuiEvent('closeInventory', () => {

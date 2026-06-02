@@ -191,4 +191,12 @@ end)
 exports('Items', function(item) return getItem(nil, item) end)
 exports('ItemList', function(item) return getItem(nil, item) end)
 
+RegisterNetEvent('ox_inventory:syncItemData', function(newList)
+    if not newList then return end
+    SendNUIMessage({
+        action = 'updateItemsLive',
+        data = newList
+    })
+end)
+
 return Items
