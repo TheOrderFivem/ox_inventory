@@ -193,6 +193,14 @@ exports('ItemList', function(item) return getItem(nil, item) end)
 
 RegisterNetEvent('ox_inventory:syncItemData', function(newList)
     if not newList then return end
+    local Items = require 'modules.items.shared'
+    for name, data in pairs(newList) do
+        if Items[name] then
+            Items[name].label = data.label
+            Items[name].weight = data.weight
+            Items[name].description = data.description
+        end
+    end
     SendNUIMessage({
         action = 'updateItemsLive',
         data = newList

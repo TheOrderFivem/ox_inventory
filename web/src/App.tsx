@@ -105,9 +105,9 @@ const App: React.FC = () => {
   });
 
   useNuiEvent<typeof Items>('updateItemsLive', (newItems) => {
-    for (const name in newItems) {
-      Items[name] = newItems[name];
-    }
+      Object.keys(newItems).forEach((name) => {
+          Items[name] = newItems[name];
+      });
   });
 
   fetchNui('uiLoaded', {});
