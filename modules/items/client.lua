@@ -194,13 +194,36 @@ exports('ItemList', function(item) return getItem(nil, item) end)
 RegisterNetEvent('ox_inventory:syncItemData', function(newList)
     if not newList then return end
     local Items = require 'modules.items.shared'
+
     for name, data in pairs(newList) do
         if Items[name] then
-            Items[name].label = data.label
-            Items[name].weight = data.weight
-            Items[name].description = data.description
+            Items[name].label = data.label or Items[name].label
+            Items[name].weight = data.weight or Items[name].weight
+            Items[name].description = data.description or Items[name].description
+            
+            if data.ammoName then 
+                Items[name].ammoname = data.ammoName 
+            elseif data.ammoname then 
+                Items[name].ammoname = data.ammoname 
+            end
+            
+            if data.stack ~= nil then Items[name].stack = data.stack end
+            if data.close ~= nil then Items[name].close = data.close end
+
+            if data.usable ~= nil then Items[name].usable = data.usable end
+
+            if data.image then Items[name].image = data.image end
+            
+            if data.client and data.client.image then
+                if not Items[name].client then Items[name].client = {} end
+                local path = data.client.image
+                Items[name].client.image = path:match('^[%w]+://') and path or ('%s/%s'):format(client.imagepath, path)
+            end
+            
+            if data.buttons then Items[name].buttons = data.buttons end
         end
     end
+
     SendNUIMessage({
         action = 'updateItemsLive',
         data = newList
