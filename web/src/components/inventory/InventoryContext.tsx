@@ -9,6 +9,7 @@ import { setClipboard } from '../../utils/setClipboard';
 import { useAppSelector } from '../../store';
 import React from 'react';
 import { Menu, MenuItem } from '../utils/menu/Menu';
+import useNuiEvent from '../../hooks/useNuiEvent';
 
 interface DataProps {
   action: string;
@@ -38,6 +39,11 @@ interface GroupedButtons extends Array<Group> {}
 const InventoryContext: React.FC = () => {
   const contextMenu = useAppSelector((state) => state.contextMenu);
   const item = contextMenu.item;
+
+  const [, forceUpdate] = React.useState(0);
+  useNuiEvent('updateItemsLive', () => {
+    forceUpdate((x) => x + 1);
+  });
 
   const handleClick = (data: DataProps) => {
     if (!item) return;
