@@ -11,6 +11,7 @@ interface Payload {
   itemCount?: Record<string, number>;
   weightData?: { inventoryId: string; maxWeight: number };
   slotsData?: { inventoryId: string; slots: number };
+  refreshItemDefinitions?: string[];
 }
 
 export const refreshSlotsReducer: CaseReducer<State, PayloadAction<Payload>> = (state, action) => {
@@ -63,7 +64,7 @@ export const refreshSlotsReducer: CaseReducer<State, PayloadAction<Payload>> = (
         : null;
 
     if (!inv) return;
-
+    
     state[inv].maxWeight = inventoryMaxWeight;
   }
 
@@ -77,7 +78,7 @@ export const refreshSlotsReducer: CaseReducer<State, PayloadAction<Payload>> = (
         : inventoryId === state.rightInventory.id
         ? 'rightInventory'
         : null;
-
+        
     if (!inv) return;
 
     state[inv].slots = slots;
@@ -88,5 +89,18 @@ export const refreshSlotsReducer: CaseReducer<State, PayloadAction<Payload>> = (
         rightInventory: inv === 'rightInventory' ? state[inv] : undefined,
       },
     });
+  }
+  // Force re-render of slots whose item *definition* changed (label/image/weight etc.)
+  // without altering the underlying slot data itself.
+  if (action.payload.refreshItemDefinitions) {
+    const changedNames = new Set(action.payload.refreshItemDefinitions);
+
+    state.leftInventory.items = state.leftInventory.items.map((slot) =>
+      slot.name && changedNames.has(slot.name) ? { ...slot } : slot
+    );
+
+    state.rightInventory.items = state.rightInventory.items.map((slot) =>
+      slot.name && changedNames.has(slot.name) ? { ...slot } : slot
+    );
   }
 };

@@ -3,7 +3,7 @@ import useNuiEvent from './hooks/useNuiEvent';
 import { Items } from './store/items';
 import { Locale } from './store/locale';
 import { setImagePath } from './store/imagepath';
-import { setupInventory } from './store/inventory';
+import { setupInventory, refreshSlots } from './store/inventory';
 import { Inventory } from './typings';
 import { useAppDispatch } from './store';
 import { debugData } from './utils/debugData';
@@ -11,6 +11,7 @@ import DragPreview from './components/utils/DragPreview';
 import { fetchNui } from './utils/fetchNui';
 import { useDragDropManager } from 'react-dnd';
 import KeyPress from './components/utils/KeyPress';
+import { imagepath } from './store/imagepath';
 
 debugData([
   {
@@ -105,9 +106,18 @@ const App: React.FC = () => {
   });
 
   useNuiEvent<typeof Items>('updateItemsLive', (newItems) => {
-      Object.keys(newItems).forEach((name) => {
-          Items[name] = newItems[name];
-      });
+    Object.keys(newItems).forEach((name) => {
+      const newItem = newItems[name];
+
+      if (!newItem) return;
+
+      if (newItem.image && !/^[\w-]+:\/\//.test(newItem.image)) {
+        newItem.image = `${imagepath}/${newItem.image}`;
+      }
+
+      Items[name] = newItem;
+    });
+    dispatch(refreshSlots({ refreshItemDefinitions: Object.keys(newItems) }));
   });
 
   fetchNui('uiLoaded', {});
