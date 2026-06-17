@@ -2761,4 +2761,39 @@ end
 
 exports('InspectInventory', Inventory.InspectInventory)
 
+--- Recalculates slot weights for active inventories when an item's base weight changes at runtime
+---@param updatedItems table<string, boolean>
+function Inventory.UpdateActiveItemWeights(updatedItems)
+    local Items = require 'modules.items.server'
+
+    for _, inv in pairs(Inventories) do
+        local changedSlots = {}
+        local invChanged = false
+        local newInvWeight = 0
+
+        for _, data in pairs(inv.items) do
+            if updatedItems[data.name] then
+                local item = Items(data.name)
+                if item then
+                    local oldWeight = data.weight
+                    data.weight = Inventory.SlotWeight(item, data)
+
+                    if data.weight ~= oldWeight then
+                        invChanged = true
+                        changedSlots[#changedSlots+1] = { item = data, inventory = inv.id }
+                    end
+                end
+            end
+            
+            newInvWeight += (data.weight or 0)
+        end
+
+        if invChanged then
+            inv.weight = newInvWeight
+            inv.changed = true
+            inv:syncSlotsWithClients(changedSlots, true)
+        end
+    end
+end
+
 return Inventory

@@ -478,8 +478,74 @@ end
 -----------------------------------------------------------------------------------------------
 
 exports('SyncItemsToClients', function(uiItemList)
-    if not uiItemList then return end
-    TriggerClientEvent('ox_inventory:syncItemData', -1, uiItemList)
+    if not uiItemList or type(uiItemList) ~= 'table' then return end
+
+    local updatedWeights = {}
+    local syncData = {}
+
+    for name, data in pairs(uiItemList) do
+        name = name:lower()
+        if name:sub(0, 7) == 'weapon_' then
+            name = name:upper()
+        end
+
+        local item = ItemList[name]
+
+        if item then
+            -- Update existing item properties
+            item.label = data.label or item.label
+            item.description = data.description or item.description
+            item.ammoname = data.ammoName or data.ammoname or item.ammoname
+
+            if data.stack ~= nil then item.stack = data.stack end
+            if data.close ~= nil then item.close = data.close end
+            if data.usable ~= nil then item.usable = data.usable end
+            if data.image then item.image = data.image end
+            if data.buttons then item.buttons = data.buttons end
+
+            -- Mark item if weight changed to trigger active inventory updates later
+            if data.weight and data.weight ~= item.weight then
+                item.weight = data.weight
+                updatedWeights[name] = true
+            end
+
+            syncData[name] = item
+        else
+            -- Runtime item registration (in-memory)
+            data.name = name
+            data.label = data.label or name
+            data.weight = data.weight or 0
+            data.close = data.close == nil and true or data.close
+            data.stack = data.stack == nil and true or data.stack
+
+            if data.weapon then
+                if not data.hash then
+                    shared.info(('SyncItemsToClients: skipped "%s", weapon items require a "hash" field.'):format(name))
+                    goto continue
+                end
+                data.hash = type(data.hash) == 'string' and joaat(data.hash) or data.hash
+                data.ammoname = data.ammoname or data.ammoName or 'ammo-9'
+                data.durability = data.durability or 0.05
+            end
+
+            ItemList[name] = data
+            syncData[name] = data
+        end
+
+        ::continue::
+    end
+
+    -- Broadcast changes to clients
+    if next(syncData) then
+        TriggerClientEvent('ox_inventory:syncItemData', -1, syncData)
+    end
+
+    -- Force weight recalculation for active inventories if any item weights were updated
+    if next(updatedWeights) and Inventory and Inventory.UpdateActiveItemWeights then
+        Inventory.UpdateActiveItemWeights(updatedWeights)
+    end
+
+    return syncData
 end)
 
 return Items
