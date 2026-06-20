@@ -6,23 +6,36 @@ import { isSlotWithItem } from '../../helpers';
 
 const Tooltip: React.FC = () => {
   const hoverData = useAppSelector((state) => state.tooltip);
-  const leftInventory = useAppSelector((state) => state.inventory.leftInventory);
-  const rightInventory = useAppSelector((state) => state.inventory.rightInventory);
+  const leftInventoryId = useAppSelector((state) => state.inventory.leftInventory.id);
+  const rightInventoryId = useAppSelector((state) => state.inventory.rightInventory.id);
+  const leftItems = useAppSelector((state) => state.inventory.leftInventory.items);
+  const rightItems = useAppSelector((state) => state.inventory.rightInventory.items);
 
   const currentItem = useMemo(() => {
-    if (!hoverData.open || !hoverData.item || !hoverData.inventoryType) return null;
-    const isPlayer = hoverData.inventoryType === 'player';
-    const inventory = isPlayer ? leftInventory : rightInventory;
-    const slotIndex = hoverData.item.slot - 1;
-    const latestItem = inventory?.items?.[slotIndex];
-    if (latestItem && latestItem.name === hoverData.item.name && isSlotWithItem(latestItem)) {
+    if (!hoverData.open || !hoverData.item || !hoverData.inventoryId) return null;
+    const activeItem = hoverData.item;
+    const items =
+      hoverData.inventoryId === leftInventoryId
+        ? leftItems
+        : hoverData.inventoryId === rightInventoryId
+        ? rightItems
+        : null;
+
+    if (!items) return activeItem;
+    
+    const latestItem =
+      items[activeItem.slot - 1] && items[activeItem.slot - 1].slot === activeItem.slot
+        ? items[activeItem.slot - 1]
+        : items.find((i) => i.slot === activeItem.slot);
+
+    if (latestItem && latestItem.name === activeItem.name && isSlotWithItem(latestItem)) {
       return latestItem;
     }
-    if (latestItem && latestItem.name !== hoverData.item.name) {
+    if (latestItem && latestItem.name !== activeItem.name) {
       return null;
     }
-    return hoverData.item;
-  }, [hoverData.open, hoverData.item, hoverData.inventoryType, leftInventory, rightInventory]);
+    return activeItem;
+  }, [hoverData.open, hoverData.item, hoverData.inventoryId, leftInventoryId, rightInventoryId, leftItems, rightItems]);
 
   const { refs, context, floatingStyles } = useFloating({
     middleware: [flip(), shift(), offset({ mainAxis: 10, crossAxis: 10 })],

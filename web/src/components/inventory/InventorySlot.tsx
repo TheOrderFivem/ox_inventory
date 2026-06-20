@@ -192,7 +192,7 @@ const InventorySlot: React.ForwardRefRenderFunction<HTMLDivElement, SlotProps> =
           className="item-slot-wrapper"
           onMouseEnter={() => {
             timerRef.current = window.setTimeout(() => {
-              dispatch(openTooltip({ item, inventoryType }));
+              dispatch(openTooltip({ item, inventoryType, inventoryId }));
             }, 500) as unknown as number;
           }}
           onMouseLeave={() => {
