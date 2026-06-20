@@ -209,18 +209,54 @@ RegisterNetEvent('ox_inventory:syncItemData', function(newList)
             
             if data.stack ~= nil then Items[name].stack = data.stack end
             if data.close ~= nil then Items[name].close = data.close end
-
             if data.usable ~= nil then Items[name].usable = data.usable end
+            if data.allowArmed ~= nil then Items[name].allowArmed = data.allowArmed end
+            if data.consume ~= nil then Items[name].consume = data.consume end
+            if data.degrade ~= nil then Items[name].degrade = data.degrade end
+            if data.durability ~= nil then Items[name].durability = data.durability end
 
             if data.image then Items[name].image = data.image end
             
-            if data.client and data.client.image then
+            -- client sub-fields
+            if data.client then
                 if not Items[name].client then Items[name].client = {} end
-                local path = data.client.image
-                Items[name].client.image = path:match('^[%w]+://') and path or ('%s/%s'):format(client.imagepath, path)
+                
+                if data.client.image then
+                    local path = data.client.image
+                    Items[name].client.image = path:match('^[%w]+://') and path or ('%s/%s'):format(client.imagepath, path)
+                end
+                
+                if data.client.status ~= nil then Items[name].client.status = data.client.status end
+                if data.client.usetime ~= nil then Items[name].client.usetime = data.client.usetime end
+                if data.client.notification ~= nil then Items[name].client.notification = data.client.notification end
+                if data.client.cancel ~= nil then Items[name].client.cancel = data.client.cancel end
+                if data.client.disable ~= nil then Items[name].client.disable = data.client.disable end
+                if data.client.anim ~= nil then Items[name].client.anim = data.client.anim end
+                if data.client.prop ~= nil then Items[name].client.prop = data.client.prop end
+                if data.client.component ~= nil then Items[name].client.component = data.client.component end
             end
             
-            if data.buttons then Items[name].buttons = data.buttons end
+            if data.buttons then
+                local fixedBtns = {}
+                for i, btn in ipairs(data.buttons) do
+                    local cb = { label = btn.label, group = btn.group }
+                    if type(btn.action) == 'string' and btn.action ~= '' then
+                        local fn, _ = load('return ' .. btn.action, 'nsb_' .. name .. '_' .. i, 't', _ENV)
+                        if fn then
+                            local ok, res = pcall(fn)
+                            cb.action = (ok and type(res) == 'function') and res or function() end
+                        else
+                            cb.action = function() end
+                        end
+                    elseif type(btn.action) == 'function' then
+                        cb.action = btn.action
+                    else
+                        cb.action = function() end
+                    end
+                    fixedBtns[#fixedBtns + 1] = cb
+                end
+                Items[name].buttons = fixedBtns
+            end
         end
     end
 
