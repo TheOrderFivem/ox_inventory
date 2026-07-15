@@ -1,5 +1,7 @@
 ## ⚠️ Notice
 
+I am now maintaining an edit of ox_inventory over here instead https://github.com/MrNewb/ox_inventory
+
 This version of `ox_inventory` has been modified to ensure **broad framework compatibility**, now working seamlessly with **qb-core**, **qbox**, **esx**, **ox_core**, and **nd_core**.
 
 It began as a continuation of an older fork that reintroduced QB support but is no longer available. Since then, this fork has grown into a **community-focused project** that prioritizes compatibility while introducing small, non-intrusive quality-of-life improvements.
